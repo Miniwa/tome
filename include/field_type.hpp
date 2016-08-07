@@ -4,15 +4,15 @@
 namespace tome
 {
     //! Represents the type of a field.
-    enum class FIELD_TYPE
+    enum FIELD_TYPE
     {
-        INT32,
-        UINT32,
-        BOOL,
-        FLOAT32,
-        FLOAT64,
-        STRING,
-        BYTES,
+        FIELD_TYPE_INT32,
+        FIELD_TYPE_UINT32,
+        FIELD_TYPE_BOOL,
+        FIELD_TYPE_FLOAT32,
+        FIELD_TYPE_FLOAT64,
+        FIELD_TYPE_STRING,
+        FIELD_TYPE_BYTES,
     };
 }
 #endif

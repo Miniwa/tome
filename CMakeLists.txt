@@ -5,7 +5,6 @@ project(tome)
 #Versions
 set (tome_VERSION_MAJOR 0)
 set (tome_VERSION_MINOR 1)
-SET (CMAKE_CXX_STANDARD 11)
 
 #Includes
 include_directories("${PROJECT_SOURCE_DIR}/include")
