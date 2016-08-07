@@ -7,7 +7,7 @@
 
 namespace tome
 {
-    //!Represents the descrption of a single field within a model.
+    //!Represents the description of a single field within a model.
     class FieldDescriptor
     {
     public:
