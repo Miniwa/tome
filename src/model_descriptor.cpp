@@ -1,5 +1,3 @@
-#include <algorithm>
-
 #include "field_descriptor.hpp"
 #include "model_descriptor.hpp"
 
