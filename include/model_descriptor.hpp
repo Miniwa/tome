@@ -10,7 +10,6 @@ namespace tome
     class FieldDescriptor;
 
     //! Represents the description of a data model, including fields.
-    //! @see tome::FieldDescriptor
     class ModelDescriptor
     {
     public:
