@@ -29,3 +29,20 @@ file(GLOB tome_TEST_SOURCES ${PROJECT_SOURCE_DIR}/src/tests/*.cpp)
 add_executable(tome_test ${tome_TEST_SOURCES})
 target_link_libraries(tome_test tome_base ${Boost_UNIT_TEST_FRAMEWORK_LIBRARY})
 add_test(tome_test tome_test)
+
+#Add doxygen target
+find_package(Doxygen)
+if(DOXYGEN_FOUND)
+    #Create output dir
+    file(MAKE_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/doc)
+
+    #Configure the doxygen file.
+    configure_file(
+        ${CMAKE_CURRENT_SOURCE_DIR}/doc/Doxyfile.in
+        ${CMAKE_CURRENT_BINARY_DIR}/doc/Doxyfile
+        )
+
+    add_custom_target(doc
+        ${DOXYGEN_EXECUTABLE} ${CMAKE_CURRENT_BINARY_DIR}/doc/Doxyfile
+        WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/doc)
+endif(DOXYGEN_FOUND)
