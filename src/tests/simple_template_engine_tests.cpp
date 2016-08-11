@@ -93,6 +93,17 @@ BOOST_AUTO_TEST_CASE(CheckMultipleOutputIsCorrect)
     BOOST_REQUIRE(errors.size() == 0);
 }
 
+BOOST_AUTO_TEST_CASE(CheckMultiLineOutputIsCorrect)
+{
+    std::string in("hi and $test\nblabla $test");
+    engine.set_context(context);
+
+    std::string result = engine.render(in, &errors);
+
+    BOOST_REQUIRE(result == "hi and hello\nblabla hello");
+    BOOST_REQUIRE(errors.size() == 0);
+}
+
 BOOST_AUTO_TEST_CASE(CheckRenderOperationIsAtomic)
 {
     std::string in("$$atomic$test");
