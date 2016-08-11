@@ -35,11 +35,6 @@ tome::SimpleTemplateEngine::~SimpleTemplateEngine()
 
 }
 
-bool tome::SimpleTemplateEngine::has_context()
-{
-    return m_has_context;
-}
-
 std::string tome::SimpleTemplateEngine::render(const std::string& tmpl)
 {
     std::vector<std::string> errors;
@@ -100,6 +95,11 @@ std::string tome::SimpleTemplateEngine::render(const std::string& tmpl, std::vec
     }
 
     return result;
+}
+
+bool tome::SimpleTemplateEngine::has_context()
+{
+    return m_has_context;
 }
 
 bool tome::SimpleTemplateEngine::is_recursive()
