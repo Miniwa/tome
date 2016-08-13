@@ -1,6 +1,6 @@
 #include "field_descriptor.hpp"
 
-tome::FieldDescriptor::FieldDescriptor(std::string name, FIELD_TYPE type, bool required)
+tome::FieldDescriptor::FieldDescriptor(const std::string& name, FIELD_TYPE type, bool required)
 {
     this->m_name = name;
     this->m_type = type;

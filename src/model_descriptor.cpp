@@ -1,14 +1,14 @@
 #include "field_descriptor.hpp"
 #include "model_descriptor.hpp"
 
-tome::ModelDescriptor::ModelDescriptor(std::string name)
+tome::ModelDescriptor::ModelDescriptor(const std::string& name)
 {
     this->m_name = name;
     this->m_package = "";
     this->m_fields = std::vector<FieldDescriptor>();
 }
 
-tome::ModelDescriptor::ModelDescriptor(std::string name, std::string package)
+tome::ModelDescriptor::ModelDescriptor(const std::string& name, const std::string& package)
 {
     this->m_name = name;
     this->m_package = package;

@@ -16,7 +16,7 @@ namespace tome
         //! @param name The name of the field.
         //! @param type The type of the field.
         //! @param required A boolean indicating whether or not the field is required.
-        FieldDescriptor(std::string name, FIELD_TYPE type, bool required);
+        FieldDescriptor(const std::string& name, FIELD_TYPE type, bool required);
 
         //! @returns The name of the field.
         std::string get_name();

@@ -15,12 +15,12 @@ namespace tome
     public:
         //! Default constructor.
         //! @param name The name of the model.
-        ModelDescriptor(std::string name);
+        ModelDescriptor(const std::string& name);
 
         //! Constructor including package.
         //! @param name The name of the model.
         //! @param package A dot seperated string that specifices the package in which the model should be located.
-        ModelDescriptor(std::string name, std::string package);
+        ModelDescriptor(const std::string& name, const std::string& package);
 
         //! @returns The name of the model.
         std::string get_name();
