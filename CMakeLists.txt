@@ -28,7 +28,7 @@ file(GLOB tome_TEST_SOURCES ${PROJECT_SOURCE_DIR}/src/tests/*.cpp)
 #Compile and link the tests.
 add_executable(tome_test ${tome_TEST_SOURCES})
 target_link_libraries(tome_test tome_base ${Boost_LIBRARIES})
-add_test(tome_test tome_test COMMAND tome_test --report_format=XML --report_sink=report.xml --report_level=detailed)
+add_test(tome_test tome_test COMMAND tome_test --log_format=XML --log_sink=report.xml --log_level=all --report_level=no)
 
 #Add doxygen target
 find_package(Doxygen)
