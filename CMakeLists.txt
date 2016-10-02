@@ -7,7 +7,8 @@ set (tome_VERSION_MAJOR 0)
 set (tome_VERSION_MINOR 1)
 
 #Boost
-set(Boost_USE_STATIC_LIBS ON)
+#set(Boost_USE_STATIC_LIBS ON)
+add_definitions(-DBOOST_TEST_DYN_LINK)
 find_package(Boost COMPONENTS unit_test_framework regex REQUIRED)
 
 #Manage directories
@@ -18,7 +19,7 @@ link_directories(${Boost_LIBRARY_DIRS})
 file(GLOB tome_base_SOURCES ${PROJECT_SOURCE_DIR}/src/*.cpp)
 
 #Compile the base library
-add_library(tome_base ${tome_base_SOURCES})
+add_library(tome_base SHARED ${tome_base_SOURCES})
 target_link_libraries(tome_base ${Boost_REGEX_LIBRARY})
 
 #Enable testing and gather the test sources
