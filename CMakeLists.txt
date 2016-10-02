@@ -2,13 +2,28 @@ cmake_minimum_required(VERSION 3.0)
 
 project(tome)
 
-#Versions
+#Variables
 set (tome_VERSION_MAJOR 0)
 set (tome_VERSION_MINOR 1)
 
-#Boost
-#set(Boost_USE_STATIC_LIBS ON)
-add_definitions(-DBOOST_TEST_DYN_LINK)
+#Link everything statically on windows.
+if(WIN32)
+    set(tome_BUILD_STATIC ON)
+    message("-- Building statically on windows..")
+endif(WIN32)
+
+#Manage configuration flags.
+if(tome_BUILD_STATIC)
+    message("-- Setting static build flags..")
+    set(Boost_USE_STATIC_LIBS ON)
+    set(tome_LIBRARY_TYPE STATIC)
+else(tome_BUILD_STATIC)
+    message("-- Setting shared build flags..")
+    set(tome_LIBRARY_TYPE SHARED)
+    add_definitions(-DBOOST_TEST_DYN_LINK)
+endif(tome_BUILD_STATIC)
+
+#Find boost.
 find_package(Boost COMPONENTS unit_test_framework regex REQUIRED)
 
 #Manage directories
@@ -17,19 +32,18 @@ link_directories(${Boost_LIBRARY_DIRS})
 
 #Manage sources
 file(GLOB tome_base_SOURCES ${PROJECT_SOURCE_DIR}/src/*.cpp)
+file(GLOB tome_test_SOURCES ${PROJECT_SOURCE_DIR}/src/tests/*.cpp)
 
 #Compile the base library
-add_library(tome_base SHARED ${tome_base_SOURCES})
+add_library(tome_base ${tome_LIBRARY_TYPE} ${tome_base_SOURCES})
 target_link_libraries(tome_base ${Boost_REGEX_LIBRARY})
 
-#Enable testing and gather the test sources
+#Enable testing, compile and link the tests.
 enable_testing()
-file(GLOB tome_TEST_SOURCES ${PROJECT_SOURCE_DIR}/src/tests/*.cpp)
-
-#Compile and link the tests.
-add_executable(tome_test ${tome_TEST_SOURCES})
+add_executable(tome_test ${tome_test_SOURCES})
 target_link_libraries(tome_test tome_base ${Boost_LIBRARIES})
 add_test(tome_test tome_test COMMAND tome_test --log_format=XML --log_sink=report.xml --log_level=all --report_level=no)
+
 
 #Add doxygen target
 find_package(Doxygen)
