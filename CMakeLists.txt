@@ -31,8 +31,10 @@ include_directories(${PROJECT_SOURCE_DIR}/include ${Boost_INCLUDE_DIRS})
 link_directories(${Boost_LIBRARY_DIRS})
 
 #Manage sources
-file(GLOB tome_base_SOURCES ${PROJECT_SOURCE_DIR}/src/*.cpp)
+file(GLOB tome_base_CPP ${PROJECT_SOURCE_DIR}/src/*.cpp)
 file(GLOB tome_test_SOURCES ${PROJECT_SOURCE_DIR}/src/tests/*.cpp)
+file(GLOB tome_base_HPP ${PROJECT_SOURCE_DIR}/include/*.hpp)
+set(tome_base_SOURCES ${tome_base_CPP} ${tome_base_HPP})
 
 #Compile the base library
 add_library(tome_base ${tome_LIBRARY_TYPE} ${tome_base_SOURCES})
